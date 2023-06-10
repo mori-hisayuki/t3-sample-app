@@ -20,7 +20,7 @@ extends:
   # Next.js 専用の ESLint のルール
   - next/core-web-vitals
   - plugin:@typescript-eslint/recommended
-  # prettierの追加
+  # prettierの追加 (eslint-config-prettier)
   - prettier
 plugins:
   - '@typescript-eslint'
@@ -60,11 +60,11 @@ rules:
   prefer-const: 'error'
   # importの形式がtype importの場合は警告
   "@typescript-eslint/consistent-type-imports":
-  - "warn"
-  -
-    prefer: "type-imports"
-    # TODO: このfixで調整されるのはPrettier出来ないかな？
-    fixStyle: "inline-type-imports"
+    - "warn"
+    -
+      prefer: "type-imports"
+      # TODO: このfixで調整されるのはPrettier出来ないかな？
+      fixStyle: "inline-type-imports"
   # no-unused-varsは、エラーを出すだけなのでoff
   no-unused-var: 'off'
   '@typescript-eslint/no-unused-vars': 'off'

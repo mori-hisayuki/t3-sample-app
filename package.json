@@ -10,7 +10,8 @@
     "start": "next start",
     "lint:fix": "next lint --fix",
     "fmt": "yarn lint && prettier --check --ignore-unknown \"./**/*.{html,ts,tsx,css,md,json}\" ",
-    "fmt:fix": "yarn lint:fix && prettier --write --ignore-unknown \"./**/*.{html,ts,tsx,css,md,json}\" "
+    "fmt:fix": "yarn lint:fix && prettier --write --ignore-unknown \"./**/*.{html,ts,tsx,css,md,json}\" ",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",
@@ -40,7 +41,10 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^8.40.0",
     "eslint-config-next": "^13.4.2",
-    "husky": "^8.0.3",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.0",
     "lint-staged": "^13.2.2",
     "postcss": "^8.4.21",
     "prettier": "^2.8.8",
