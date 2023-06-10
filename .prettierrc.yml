@@ -3,6 +3,10 @@
 #  (https: //prettier.io/docs/en/options.html)                           #
 ##########################################################################
 
+plugins:
+  # TailwindCSSで長くなりがちなclass名の整形
+  - prettier-plugin-tailwindcss
+
 # 折り返す行の長さ (.editorconfig:max_line_lengthでoverride可能)
 printWidth: 90
 # インデントごとのスペース数 (.editorconfig:indent_sizeでoverride可能)
