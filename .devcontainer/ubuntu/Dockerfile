@@ -73,6 +73,8 @@ RUN set -x \
 # install yarn
 RUN npm install -g yarn
 
+RUN yarn global add create-t3-app
+
 USER ${USER_NAME}
 
 # create workingirectory
