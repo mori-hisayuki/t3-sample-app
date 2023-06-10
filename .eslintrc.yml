@@ -1,6 +1,19 @@
 env:
   browser: true
   es2021: true
+overrides:
+  - extends:
+      - "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    files:
+      - "*.ts"
+      - "*.tsx"
+    parserOptions:
+      project: __dirname/tsconfig.json
+# コード解析時にTypescript用のparserを使用するようにする
+parser: "@typescript-eslint/parser"
+parserOptions:
+  # 解析の精度を上げるためにtsconfig.jsonの場所を指定
+  project: __dirname/tsconfig.json
 extends:
   # ESLintの推奨設定
   - eslint:recommended
@@ -45,6 +58,13 @@ rules:
   no-lonely-if: 'error'
   # 再代入されないならconstを使う
   prefer-const: 'error'
+  # importの形式がtype importの場合は警告
+  "@typescript-eslint/consistent-type-imports":
+  - "warn"
+  -
+    prefer: "type-imports"
+    # TODO: このfixで調整されるのはPrettier出来ないかな？
+    fixStyle: "inline-type-imports"
   # no-unused-varsは、エラーを出すだけなのでoff
   no-unused-var: 'off'
   '@typescript-eslint/no-unused-vars': 'off'
