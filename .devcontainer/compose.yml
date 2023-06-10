@@ -1,0 +1,28 @@
+version: "3.2"
+services:
+  t3_stack:
+    container_name: $CONTAINER_NAME
+    # ホスト名を明示的に指定する
+    hostname: localhost
+    # ゾンビプロセス防止
+    init: true
+    build:
+      context: .
+      dockerfile: ./ubuntu/Dockerfile
+      args:
+        USER_ID: 1000
+        USER_NAME: $USER_NAME
+        GROUP_ID: 1000
+        GROUP_NAME: $USER_NAME
+        WORK_DIR: $WORK_DIR
+    environment:
+      - TZ=JST-9
+    ports:
+      - 80:80
+      - 3000:3000
+    volumes:
+      # ソースコードとdevcontainerを一緒に管理する場合は明示的にマウント先を指定
+      - ..:$HOME_DIR/$WORK_DIR:cached
+      - ~/.ssh:$HOME_DIR/.ssh
+      - .extensions:$HOME_DIR/.vscode-server/extensions
+    command: sleep infinity

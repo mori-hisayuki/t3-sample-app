@@ -1,0 +1,48 @@
+{
+  "name": "VSCode on NodeJS",
+  "dockerComposeFile": "./compose.yml",
+  "service": "t3_stack",
+  // workspaceを明示的に指定
+  "workspaceFolder": "/home/vscode/develop",
+  // VS Codeの設定
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        // 行末技の空白の自動削除を無効(editorconfigにやらせるため)
+        "files.trimTrailingWhitespace": false,
+      },
+      // remote container内でのextension
+      "extensions": [
+        "vscodevim.vim",                          // Vim
+        "pkief.material-icon-theme",              // Material Icon Thema
+        "formulahendry.auto-rename-tag",          // Auto Rename Tag
+        "oderwat.indent-rainbow",                 // indent-rainbow
+        "EditorConfig.EditorConfig",              // EditorConfig for VS Code
+        "eamodio.gitlens",                        // GitLens — Git supercharged
+        "mhutchie.git-graph",                     // Git Graph
+        "vector-of-bool.gitflow",                 // gitflow
+        "ionutvmi.path-autocomplete",             // Path Autocomplete
+        "christian-kohler.path-intellisense",     // Path Intellisense
+        "streetsidesoftware.code-spell-checker",  // Code Spell Checker
+        "dbaeumer.vscode-eslint",                 // ESLint
+        "esbenp.prettier-vscode",                 // Prettier
+        "rangav.vscode-thunder-client"            // Thunder Client
+      ]
+    }
+  },
+  "features": {
+    //https://containers.dev/features
+    // AWS CLI (aws-cli)
+    "ghcr.io/devcontainers/features/aws-cli:1": {
+      "version": "latest"
+    },
+    // git
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    }
+  },
+  "remoteUser": "vscode",
+  // Dev Container 作成時に実行するコマンド
+  "postCreateCommand": "sh .devcontainer/postCreate.sh"
+}
