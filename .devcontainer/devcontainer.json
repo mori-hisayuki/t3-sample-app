@@ -11,6 +11,10 @@
         "editor.formatOnSave": true,
         // 行末技の空白の自動削除を無効(editorconfigにやらせるため)
         "files.trimTrailingWhitespace": false,
+        // .prismaにprettierのformatを有効にする
+        "[prisma]": {
+          "editor.defaultFormatter": "Prisma.prisma"
+        }
       },
       // remote container内でのextension
       "extensions": [
