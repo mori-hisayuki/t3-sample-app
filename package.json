@@ -9,8 +9,8 @@
     "lint": "next lint",
     "start": "next start",
     "lint:fix": "next lint --fix",
-    "fmt": "yarn lint && prettier --check --ignore-unknown \"./**/*.{html,ts,tsx,css,md,json}\" ",
-    "fmt:fix": "yarn lint:fix && prettier --write --ignore-unknown \"./**/*.{html,ts,tsx,css,md,json}\" ",
+    "fmt": "prettier --check --ignore-unknown \"./**/*.{html,js,mjs,ts,tsx,css,md,json}\" && yarn lint",
+    "fmt:fix": "prettier --write --ignore-unknown \"./**/*.{html,js,mjs,ts,tsx,css,md,json}\" && yarn lint:fix",
     "prepare": "husky install"
   },
   "dependencies": {
