@@ -8,12 +8,12 @@ overrides:
       - "*.ts"
       - "*.tsx"
     parserOptions:
-      project: __dirname/tsconfig.json
+      project: ./tsconfig.json
 # コード解析時にTypescript用のparserを使用するようにする
 parser: "@typescript-eslint/parser"
 parserOptions:
   # 解析の精度を上げるためにtsconfig.jsonの場所を指定
-  project: __dirname/tsconfig.json
+  project: ./tsconfig.json
 extends:
   # ESLintの推奨設定
   - eslint:recommended
