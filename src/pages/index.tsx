@@ -2,6 +2,7 @@ import { type NextPage } from 'next'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Head from 'next/head'
 import Image from 'next/image'
+import { CreateTodo } from '~/components/CreateTodo'
 
 const Home: NextPage = () => {
   const { data: sessionData, status } = useSession()
@@ -31,7 +32,9 @@ const Home: NextPage = () => {
                   Sign out
                 </button>
               </div>
-              <div>Todo components coming soon...</div>
+              <div>
+                <CreateTodo />
+              </div>
             </>
           )}
           {status !== 'loading' && !sessionData && (
