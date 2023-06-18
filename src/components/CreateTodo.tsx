@@ -1,12 +1,18 @@
 import { createInput } from '~/server/types'
 import toast from 'react-hot-toast'
 import { useState } from 'react'
+import { api } from '~/utils/api'
 
 /**
  * Todoを追加するコンポーネント
  */
 export const CreateTodo = () => {
   const [newTodo, setNewTodo] = useState('')
+  const trpc = api.useContext()
+  const { mutate } = api.todo.create.useMutation({
+    // onSettled: クエリ or ミューテーションが成功したかどうかに関わらず呼び出される
+    onSettled: async () => await trpc.todo.all.invalidate()
+  })
 
   return (
     <form
@@ -18,6 +24,8 @@ export const CreateTodo = () => {
           toast.error(result.error.format()._errors.join('\n'))
           return
         }
+
+        mutate(newTodo)
       }}
       className="flex justify-between gap-3"
     >
