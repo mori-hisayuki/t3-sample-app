@@ -8,7 +8,11 @@
   "customizations": {
     "vscode": {
       "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        },
         // 行末技の空白の自動削除を無効(editorconfigにやらせるため)
         "files.trimTrailingWhitespace": false,
         // .prismaにprettierのformatを有効にする
