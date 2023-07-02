@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import type { Todo } from '~/server/types'
+import { api } from '~/utils/api'
 
 type Props = {
   todo: Todo
@@ -6,6 +8,28 @@ type Props = {
 
 export const TodoItem: React.FC<Props> = ({ todo }) => {
   const { id, text, isCompleted } = todo
+
+  const [currentTodo, setCurrentTodo] = useState(text)
+
+  const trpc = api.useContext()
+
+  const { mutate: toggleMutation } = api.todo.toggle.useMutation({
+    onSettled: async () => {
+      await trpc.todo.all.invalidate()
+    }
+  })
+
+  const { mutate: deleteMutation } = api.todo.delete.useMutation({
+    onSettled: async () => {
+      await trpc.todo.all.invalidate()
+    }
+  })
+
+  const { mutate: updateMutation } = api.todo.update.useMutation({
+    onSettled: async () => {
+      await trpc.todo.all.invalidate()
+    }
+  })
 
   return (
     <div className="flex items-center justify-between rounded-md border-2 border-gray-one px-5 py-4">
@@ -16,12 +40,22 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
           name="done"
           id={id}
           checked={isCompleted}
+          onChange={e => {
+            toggleMutation({ id, is_completed: e.target.checked })
+          }}
         />
         <input
           className="ml-5 flex-1 text-ellipsis rounded-none border-x-0 border-b border-t-0 border-dashed border-b-gray-two bg-cream-four px-0 pb-1 text-base font-normal text-gray-three placeholder:text-gray-two focus:border-gray-three focus:outline-none focus:ring-0"
           id={`${todo.id}-text`}
           type="text"
           placeholder="Enter a todo"
+          value={currentTodo}
+          onChange={e => {
+            setCurrentTodo(e.target.value)
+          }}
+          onBlur={e => {
+            updateMutation({ id, text: e.target.value })
+          }}
         />
         <span
           className={`${
@@ -34,6 +68,9 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
       <button
         type="button"
         className="group ml-4 flex items-center justify-center rounded-md bg-cream-four p-2 hover:bg-steel-one focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-five"
+        onClick={() => {
+          deleteMutation(id)
+        }}
       >
         <svg
           className="h-5 w-5 text-steel-three group-hover:text-gray-five"
