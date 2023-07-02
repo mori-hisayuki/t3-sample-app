@@ -1,4 +1,21 @@
 import { z } from 'zod'
+import type { inferRouterOutputs } from '@trpc/server'
+import type { AppRouter } from '~/server/api/root'
+
+/**
+ * APIの型定義であるAppRouterが出力する型を推論するためのヘルパータイプ
+ */
+type RouterOutput = inferRouterOutputs<AppRouter>
+
+/**
+ * Todo一覧の配列型
+ */
+type TodoList = RouterOutput['todo']['all']
+
+/**
+ * Todoの型
+ */
+export type Todo = TodoList[number]
 
 /**
  * Todoの作成時の入力バリデーション
