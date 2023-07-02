@@ -6,7 +6,7 @@ import { TodoItem } from './TodoItem'
  * Todoの一覧を表示するコンポーネント
  * @returns
  */
-export const TodoList: React.FC<void> = () => {
+export const TodoList: React.FC = () => {
   // Todo一覧の取得
   const { data: todos, isLoading, isError } = api.todo.all.useQuery()
 
