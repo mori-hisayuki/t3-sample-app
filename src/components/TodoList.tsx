@@ -1,6 +1,7 @@
 import React from 'react'
 import { api } from '~/utils/api'
-import { TodoItem } from './TodoItem'
+import { TodoItem } from '~/components/TodoItem'
+import { ProgressBar } from '~/components/ProgressBar'
 
 /**
  * Todoの一覧を表示するコンポーネント
@@ -36,6 +37,7 @@ export const TodoList: React.FC = () => {
           </section>
         )
       })}
+      <ProgressBar todoList={todos} />
     </>
   )
 }
