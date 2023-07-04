@@ -2,6 +2,8 @@ import type { InferGetServerSidePropsType } from 'next'
 import { getProviders, signIn } from 'next-auth/react'
 import Image from 'next/image'
 
+export const runtime = 'edge'
+
 const SignIn = ({
   providers
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => (
