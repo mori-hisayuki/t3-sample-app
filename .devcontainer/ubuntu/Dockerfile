@@ -73,7 +73,9 @@ RUN set -x \
 # install yarn
 RUN npm install -g yarn
 
-RUN yarn global add create-t3-app
+RUN yarn global add \
+    create-t3-app \
+    wrangler
 
 USER ${USER_NAME}
 
